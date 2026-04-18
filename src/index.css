@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root[data-theme="light"] {
+  /* Using dark theme as the default 'light' since it's a dark-only design by screenshot, 
+     but we'll keep variables for flexibility. */
+  --bg-color: #111115;
+  --bg-surface: #191920;
+  --bg-surface-hover: #22222d;
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-placeholder: #475569;
+  
+  --border-color: #24242f;
+  
+  --accent-color: #5c35de; /* Deep Purple */
+  --accent-hover: #4a29bb;
+  --accent-light: rgba(92, 53, 222, 0.15);
+  
+  --success-color: #22c55e;
+  --success-bg: rgba(34, 197, 94, 0.1);
+  
+  --danger-color: #ef4444;
+  --danger-bg: rgba(239, 68, 68, 0.1);
+  
+  --card-shadow: none;
+  --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+}
+
+:root[data-theme="dark"] {
+  --bg-color: #0d0d12;
+  --bg-surface: #16161d;
+  --bg-surface-hover: #1e1e28;
+  --text-primary: #f8fafc;
+  --text-secondary: #8b8b9b;
+  --text-placeholder: #4b4b5a;
+  
+  --border-color: #21212d;
+  
+  --accent-color: #4b2ac6; /* Deep Purple */
+  --accent-hover: #3b20a5;
+  --accent-light: rgba(75, 42, 198, 0.15);
+  
+  --success-color: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.15);
+  
+  --danger-color: #f87171;
+  --danger-bg: rgba(248, 113, 113, 0.15);
+  
+  --card-shadow: none;
+  --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+}
+
+input, select, textarea {
+  font-family: inherit;
+}
+
+/* Typography */
+.h1 { font-size: 2rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+.h2 { font-size: 1.25rem; font-weight: 600; line-height: 1.3; }
+.h3 { font-size: 1rem; font-weight: 600; line-height: 1.4; }
+.text-xs { font-size: 0.75rem; }
+.text-sm { font-size: 0.875rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.125rem; }
+
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-accent { color: var(--accent-color); }
+.text-success { color: var(--success-color); }
+.text-danger { color: var(--danger-color); }
+
+/* Common UI Elements */
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+}
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+.btn-outline:hover {
+  background-color: var(--bg-surface-hover);
+}
+
+.btn-ghost {
+  color: var(--text-secondary);
+}
+.btn-ghost:hover {
+  background-color: var(--bg-surface-hover);
+  color: var(--text-primary);
+}
+
+.input, .select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease;
+}
+.input:focus, .select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
