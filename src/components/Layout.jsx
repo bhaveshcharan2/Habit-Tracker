@@ -22,8 +22,8 @@ export default function Layout({ children }) {
       <aside className="sidebar">
         <div className="sidebar-header">
           <Link to="/dashboard" className="logo">
-            <span style={{ color: 'white' }}>Habit</span>
-            <span style={{ color: 'var(--accent-color)' }}>Forge</span>
+            <span style={{ color: 'var(--text-primary)' }}>Wa</span>
+            <span style={{ color: 'var(--accent-color)' }}>mio</span>
           </Link>
         </div>
         

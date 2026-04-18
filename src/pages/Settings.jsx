@@ -139,7 +139,7 @@ export default function Settings() {
         <h2 className="h3" style={{ marginBottom: '1.5rem', color: 'var(--danger-color)' }}>Account Actions</h2>
         <p className="text-sm text-secondary mb-4">You can log back in securely at any time.</p>
         <button onClick={logout} className="btn" style={{ backgroundColor: 'var(--danger-bg)', color: 'var(--danger-color)', width: '100%', maxWidth: 'max-content' }}>
-          Log Out of HabitForge
+          Log Out of Wamio
         </button>
       </div>
     </>

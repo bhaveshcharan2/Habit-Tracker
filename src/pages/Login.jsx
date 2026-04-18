@@ -33,7 +33,7 @@ export default function Login() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '2rem' }}>
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-primary)', marginBottom: '1.5rem' }}>
             <Activity color="var(--accent-color)" size={28} />
-            <span style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>HabitTracker</span>
+            <span style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Wamio</span>
           </Link>
           <h2 className="h2">Welcome Back</h2>
           <p className="text-secondary text-sm mt-2">Log in to track your habits</p>

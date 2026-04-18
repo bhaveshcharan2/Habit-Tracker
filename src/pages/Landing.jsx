@@ -12,7 +12,7 @@ export default function Landing() {
       <header className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1.5rem', width: '100%' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold', fontSize: '1.5rem', color: 'var(--text-primary)' }}>
           <Activity color="var(--accent-color)" size={28} />
-          <span>HabitTracker</span>
+          <span>Wamio</span>
         </div>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <Link to="/login" className="btn btn-ghost">Log In</Link>
@@ -65,7 +65,7 @@ export default function Landing() {
       
       {/* Footer */}
       <footer style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-placeholder)', borderTop: '1px solid var(--border-color)' }}>
-        <p>&copy; {new Date().getFullYear()} HabitTracker. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Wamio. All rights reserved.</p>
       </footer>
     </div>
   );
