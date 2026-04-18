@@ -5,6 +5,16 @@ export default function HabitCard({ habit, logStatus, onToggle, onEdit, onDelete
   // status: 'completed' | 'missed' | 'none'
   const isCompleted = logStatus === 'completed';
 
+  const categoryEmojis = {
+    'Health': '🍎',
+    'Productivity': '⚡',
+    'Mindfulness': '🧘',
+    'Fitness': '🏋️',
+    'Learning': '📚',
+    'Other': '✨'
+  };
+  const typeEmoji = categoryEmojis[habit.category] || '📌';
+
   return (
     <div className="card habit-card" style={{ 
       padding: '1rem 1.5rem', 
@@ -23,7 +33,7 @@ export default function HabitCard({ habit, logStatus, onToggle, onEdit, onDelete
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <h3 className="h3" style={{ fontSize: '1rem', color: isCompleted ? 'var(--text-secondary)' : 'var(--text-primary)' }}>
-              {habit.name}
+              {typeEmoji} {habit.name}
             </h3>
             <span style={{ fontSize: '0.7rem', padding: '0.1rem 0.5rem', backgroundColor: 'var(--accent-light)', color: 'var(--accent-color)', borderRadius: '1rem', fontWeight: 600 }}>
               {habit.category}
