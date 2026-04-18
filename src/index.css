@@ -1,29 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root[data-theme="light"] {
-  /* Using dark theme as the default 'light' since it's a dark-only design by screenshot, 
-     but we'll keep variables for flexibility. */
-  --bg-color: #111115;
-  --bg-surface: #191920;
-  --bg-surface-hover: #22222d;
-  --text-primary: #ffffff;
-  --text-secondary: #94a3b8;
-  --text-placeholder: #475569;
+  --bg-color: #f8fafc; /* Crisp blueish off-white */
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-placeholder: #94a3b8;
   
-  --border-color: #24242f;
+  --border-color: #e2e8f0;
   
-  --accent-color: #5c35de; /* Deep Purple */
-  --accent-hover: #4a29bb;
-  --accent-light: rgba(92, 53, 222, 0.15);
+  --accent-color: #4f46e5; /* Indigo / Blue */
+  --accent-hover: #4338ca;
+  --accent-light: #e0e7ff; /* Soft crisp blue background */
   
-  --success-color: #22c55e;
-  --success-bg: rgba(34, 197, 94, 0.1);
+  --success-color: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.1);
   
   --danger-color: #ef4444;
   --danger-bg: rgba(239, 68, 68, 0.1);
   
-  --card-shadow: none;
-  --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --modal-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
 :root[data-theme="dark"] {
@@ -80,6 +78,7 @@ button {
   font-family: inherit;
   border: none;
   background: none;
+  touch-action: manipulation; /* Makes taps more responsive */
 }
 
 input, select, textarea {
@@ -120,10 +119,10 @@ input, select, textarea {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.25rem;
+  padding: 0.75rem 1.25rem; /* Increased padding for easier tapping */
   border-radius: 0.5rem;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   transition: all 0.2s ease;
 }
 
@@ -172,3 +171,20 @@ input, select, textarea {
 .mb-2 { margin-bottom: 0.5rem; }
 .mb-4 { margin-bottom: 1rem; }
 .mb-6 { margin-bottom: 1.5rem; }
+
+/* Mobile Responsiveness specifically for components */
+@media (max-width: 640px) {
+  .habit-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.25rem !important;
+    padding: 1.25rem !important;
+  }
+  .habit-card-info {
+    width: 100%;
+  }
+  .habit-card-actions {
+    width: 100%;
+    justify-content: space-between !important;
+  }
+}

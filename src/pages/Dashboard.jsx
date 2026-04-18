@@ -129,7 +129,7 @@ export default function Dashboard() {
         
         <div className="card" style={{ padding: '1.5rem 1rem' }}>
           <p className="text-secondary text-xs font-bold" style={{ letterSpacing: '0.05em', marginBottom: '0.5rem' }}>THIS MONTH</p>
-          <p className="h1" style={{ color: 'white' }}>{monthPercent}%</p>
+          <p className="h1 text-primary">{monthPercent}%</p>
           <p className="text-sm text-secondary mt-1">{monthLogs.length} total</p>
         </div>
         
@@ -143,7 +143,7 @@ export default function Dashboard() {
 
       {/* Today's Habits Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-        <h2 className="h2" style={{ color: 'white' }}>Today's Habits</h2>
+        <h2 className="h2 text-primary">Today's Habits</h2>
         <button className="btn btn-primary" onClick={() => { setEditingHabit(null); setIsModalOpen(true); }} style={{ borderRadius: '0.75rem' }}>
           + Add Habit
         </button>
@@ -170,7 +170,7 @@ export default function Dashboard() {
       </div>
 
       {/* This Week Chart Header */}
-      <h2 className="h2" style={{ color: 'white', marginBottom: '1.5rem' }}>This Week</h2>
+      <h2 className="h2 text-primary" style={{ marginBottom: '1.5rem' }}>This Week</h2>
       <div className="card" style={{ height: '250px', padding: '1.5rem', display: 'flex', alignItems: 'flex-end' }}>
           
         <ResponsiveContainer width="100%" height="100%">
@@ -183,7 +183,7 @@ export default function Dashboard() {
             </defs>
             <Tooltip 
               cursor={{ fill: 'var(--bg-surface-hover)' }}
-              contentStyle={{ backgroundColor: 'var(--bg-color)', border: 'none', color: 'white' }}
+              contentStyle={{ backgroundColor: 'var(--bg-color)', border: 'none', color: 'var(--text-primary)' }}
             />
             <XAxis 
               dataKey="name" 

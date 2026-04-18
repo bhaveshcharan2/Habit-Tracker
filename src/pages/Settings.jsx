@@ -7,7 +7,7 @@ import { getAllLogs } from '../firebase/db';
 
 export default function Settings() {
   const { theme, toggleTheme } = useTheme();
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
   
   const [isEditingName, setIsEditingName] = useState(false);
   const [newName, setNewName] = useState(currentUser?.name || '');
@@ -133,6 +133,14 @@ export default function Settings() {
             Export CSV
           </button>
         </div>
+      </div>
+
+      <div className="card" style={{ marginBottom: '2rem', border: '1px solid var(--danger-bg)' }}>
+        <h2 className="h3" style={{ marginBottom: '1.5rem', color: 'var(--danger-color)' }}>Account Actions</h2>
+        <p className="text-sm text-secondary mb-4">You can log back in securely at any time.</p>
+        <button onClick={logout} className="btn" style={{ backgroundColor: 'var(--danger-bg)', color: 'var(--danger-color)', width: '100%', maxWidth: 'max-content' }}>
+          Log Out of HabitForge
+        </button>
       </div>
     </>
   );

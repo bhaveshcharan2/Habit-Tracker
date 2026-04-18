@@ -63,12 +63,13 @@ export default function Calendar() {
         </div>
       </header>
 
-      <div className="card" style={{ marginBottom: '2rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '0.5rem', textAlign: 'center', marginBottom: '1rem' }}>
-          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => (
-            <div key={d} className="text-secondary font-bold text-sm">{d}</div>
-          ))}
-        </div>
+      <div className="card" style={{ marginBottom: '2rem', overflowX: 'auto' }}>
+        <div style={{ minWidth: '550px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '0.5rem', textAlign: 'center', marginBottom: '1rem' }}>
+            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => (
+              <div key={d} className="text-secondary font-bold text-sm">{d}</div>
+            ))}
+          </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '0.5rem' }}>
           {/* Add empty slots for days before start of month map */}
@@ -97,19 +98,19 @@ export default function Calendar() {
                 height: '80px', 
                 borderRadius: '0.5rem', 
                 backgroundColor: bgColor,
-                border: todayActive ? '2px solid white' : '1px solid var(--border-color)',
+                border: todayActive ? '2px solid var(--text-primary)' : '1px solid var(--border-color)',
                 padding: '0.5rem',
                 position: 'relative'
               }}>
                 <span style={{ 
-                  color: completedCount > 0 && bgColor !== 'var(--accent-light)' ? 'white' : 'var(--text-secondary)', 
+                  color: completedCount > 0 && bgColor !== 'var(--accent-light)' ? 'var(--text-primary)' : 'var(--text-secondary)', 
                   fontWeight: todayActive ? 'bold' : 'normal' 
                 }}>
                   {format(day, 'd')}
                 </span>
                 
                 {completedCount > 0 && (
-                  <div style={{ position: 'absolute', bottom: '0.5rem', right: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.1rem', color: completedCount === totalHabits && totalHabits > 0 ? '#f97316' : 'white' }}>
+                  <div style={{ position: 'absolute', bottom: '0.5rem', right: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.1rem', color: completedCount === totalHabits && totalHabits > 0 ? '#f97316' : 'var(--text-primary)' }}>
                     <Flame size={12} />
                     <span style={{ fontSize: '0.65rem', fontWeight: 'bold' }}>{completedCount}</span>
                   </div>
@@ -117,6 +118,7 @@ export default function Calendar() {
               </div>
             );
           })}
+        </div>
         </div>
       </div>
     </>

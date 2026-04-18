@@ -6,7 +6,7 @@ export default function HabitCard({ habit, logStatus, onToggle, onEdit, onDelete
   const isCompleted = logStatus === 'completed';
 
   return (
-    <div className="card" style={{ 
+    <div className="card habit-card" style={{ 
       padding: '1rem 1.5rem', 
       display: 'flex', 
       alignItems: 'center', 
@@ -18,11 +18,11 @@ export default function HabitCard({ habit, logStatus, onToggle, onEdit, onDelete
       boxShadow: 'none'
     }}>
       
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div className="habit-card-info" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: habit.color || 'var(--accent-color)' }}></div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <h3 className="h3" style={{ fontSize: '1rem', color: isCompleted ? 'var(--text-secondary)' : 'white' }}>
+            <h3 className="h3" style={{ fontSize: '1rem', color: isCompleted ? 'var(--text-secondary)' : 'var(--text-primary)' }}>
               {habit.name}
             </h3>
             <span style={{ fontSize: '0.7rem', padding: '0.1rem 0.5rem', backgroundColor: 'var(--accent-light)', color: 'var(--accent-color)', borderRadius: '1rem', fontWeight: 600 }}>
@@ -33,7 +33,7 @@ export default function HabitCard({ habit, logStatus, onToggle, onEdit, onDelete
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+      <div className="habit-card-actions" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
         
         {/* Streak Indicator */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: '#f97316' }}>

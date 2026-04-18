@@ -95,6 +95,9 @@ export default function Layout({ children }) {
                {theme === 'light' ? <Moon size={18} color="var(--accent-color)" /> : <Sun size={18} color="var(--accent-color)" />}
              </button>
              <div className="top-avatar">{currentUser?.name?.charAt(0) || 'U'}</div>
+             <button onClick={logout} className="btn-ghost" title="Log Out" style={{ padding: '0.25rem' }}>
+               <LogOut size={20} />
+             </button>
            </div>
         </div>
       

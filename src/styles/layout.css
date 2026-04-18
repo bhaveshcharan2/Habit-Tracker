@@ -131,7 +131,7 @@
 .progress-percent {
   font-size: 1.25rem;
   font-weight: 700;
-  color: white;
+  color: var(--text-primary);
   margin-top: 0.25rem;
   margin-bottom: 0.5rem;
 }
@@ -164,6 +164,9 @@
   padding: 1.5rem 2.5rem;
   background-color: var(--bg-color);
   border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 .month-nav {
@@ -185,11 +188,11 @@
 }
 .nav-arrow:hover {
   background-color: var(--bg-surface-hover);
-  color: white;
+  color: var(--text-primary);
 }
 
 .nav-month {
-  color: white;
+  color: var(--text-primary);
 }
 
 .nav-theme-toggle {
@@ -209,7 +212,7 @@
   background-color: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: 50%;
-  color: white;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -254,5 +257,14 @@
   .sidebar { display: none; }
   .bottom-nav { display: flex; }
   .main-container { padding: 1.5rem 1rem 5rem 1rem; }
-  .top-navbar { padding: 1rem; }
+  
+  .top-navbar { 
+    padding: 1rem;
+    flex-wrap: wrap; /* Allows safe collapsing without vertical stretch */
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
 }
