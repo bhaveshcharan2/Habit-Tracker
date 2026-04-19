@@ -31,7 +31,7 @@ export default function Signup() {
       setError('');
       setLoading(true);
       await signup(email, password, name);
-      navigate('/dashboard');
+      navigate('/login', { state: { message: 'Account created! Please check your email to verify your account.' } });
     } catch (err) {
       setError('Failed to create an account. Email might already be in use.');
       console.error(err);

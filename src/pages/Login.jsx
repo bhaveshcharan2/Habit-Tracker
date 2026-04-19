@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Activity, Eye, EyeOff } from 'lucide-react';
 
@@ -10,15 +10,23 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [infoMessage, setInfoMessage] = useState(location.state?.message || '');
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       setError('');
       setLoading(true);
-      await login(email, password);
+      const userCredential = await login(email, password);
+      if (!userCredential.user.emailVerified) {
+        setError('Please verify your email address before logging in.');
+        await logout();
+        setLoading(false);
+        return;
+      }
       navigate('/dashboard');
     } catch (err) {
       setError('Failed to log in. Please check your credentials.');
@@ -43,6 +51,12 @@ export default function Login() {
         {error && (
           <div style={{ backgroundColor: 'var(--danger-bg)', color: 'var(--danger-color)', padding: '0.75rem', borderRadius: '0.5rem', marginBottom: '1.5rem', fontSize: '0.875rem' }}>
             {error}
+          </div>
+        )}
+
+        {infoMessage && (
+          <div style={{ backgroundColor: 'rgba(16, 185, 129, 0.1)', color: '#10b981', padding: '0.75rem', borderRadius: '0.5rem', marginBottom: '1.5rem', fontSize: '0.875rem' }}>
+            {infoMessage}
           </div>
         )}
 

@@ -4,7 +4,8 @@ import {
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
   signOut,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  sendEmailVerification
 } from 'firebase/auth';
 import { auth, db } from '../firebase/config';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
@@ -18,6 +19,11 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
+        if (!user.emailVerified) {
+          setCurrentUser(null);
+          setLoading(false);
+          return;
+        }
         // Fetch additional user data from Firestore if needed
         const userDocRef = doc(db, 'users', user.uid);
         const userDoc = await getDoc(userDocRef);
@@ -41,12 +47,16 @@ export function AuthProvider({ children }) {
 
   const signup = async (email, password, name) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    // Send verification email
+    await sendEmailVerification(userCredential.user);
     // Create a user document in Firestore
     await setDoc(doc(db, 'users', userCredential.user.uid), {
       name,
       email,
       createdAt: new Date().toISOString()
     });
+    // Sign out the user immediately after signup so they have to verify and log in
+    await signOut(auth);
     return userCredential;
   };
 
@@ -58,12 +68,19 @@ export function AuthProvider({ children }) {
     return sendPasswordResetEmail(auth, email);
   };
 
+  const sendVerification = () => {
+    if (auth.currentUser) {
+      return sendEmailVerification(auth.currentUser);
+    }
+  };
+
   const value = {
     currentUser,
     login,
     signup,
     logout,
-    resetPassword
+    resetPassword,
+    sendVerification
   };
 
   return (
