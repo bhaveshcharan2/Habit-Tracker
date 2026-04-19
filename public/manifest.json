@@ -4,8 +4,8 @@
   "description": "A premium habit tracking experience designed to help you build consistency and achieve your goals.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#10b981",
+  "background_color": "#f8fafc",
+  "theme_color": "#f8fafc",
   "icons": [
     {
       "src": "/icon-512.png",

@@ -15,6 +15,13 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
+    
+    // Update PWA theme color meta tag
+    const themeColor = theme === 'light' ? '#f8fafc' : '#0d0d12';
+    let metaTag = document.querySelector('meta[name="theme-color"]');
+    if (metaTag) {
+      metaTag.setAttribute('content', themeColor);
+    }
   }, [theme]);
 
   const toggleTheme = () => {
