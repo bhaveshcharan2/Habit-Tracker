@@ -14,9 +14,9 @@ export default function Footer() {
             A premium habit tracking experience designed to help you build consistency and achieve your long-term goals with ease.
           </p>
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
-            <a href="#" className="btn-ghost" style={{ padding: '0.5rem' }}><Twitter /> size={20} /></a>
-            <a href="#" className="btn-ghost" style={{ padding: '0.5rem' }}><Github/>  size={20} /></a>
-            <a href="#" className="btn-ghost" style={{ padding: '0.5rem' }}><Linkedin /> size={20} /></a>
+            <a href="#" className="btn-ghost" style={{ padding: '0.5rem' }}><Twitter/> size={20} </a>
+            <a href="#" className="btn-ghost" style={{ padding: '0.5rem' }}><Github/>  size={20} </a>
+            <a href="#" className="btn-ghost" style={{ padding: '0.5rem' }}><Linkedin /> size={20} </a>
           </div>
         </div>
 
