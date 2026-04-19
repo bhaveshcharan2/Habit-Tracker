@@ -3,6 +3,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import ForgotPassword from './pages/ForgotPassword';
 import Dashboard from './pages/Dashboard';
 import Calendar from './pages/Calendar';
 import Analytics from './pages/Analytics';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={currentUser ? <Navigate to="/dashboard" replace /> : <Landing />} />
           <Route path="/login" element={currentUser ? <Navigate to="/dashboard" replace /> : <Login />} />
           <Route path="/signup" element={currentUser ? <Navigate to="/dashboard" replace /> : <Signup />} />
+          <Route path="/forgot-password" element={currentUser ? <Navigate to="/dashboard" replace /> : <ForgotPassword />} />
           
           <Route path="/dashboard" element={
             <ProtectedRoute>

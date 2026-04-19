@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Activity } from 'lucide-react';
+import { Activity, Eye, EyeOff } from 'lucide-react';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -59,16 +60,30 @@ export default function Login() {
             />
           </div>
           <div>
-            <label htmlFor="password" className="text-sm font-medium text-primary" style={{ display: 'block', marginBottom: '0.5rem' }}>Password</label>
-            <input 
-              type="password" 
-              id="password" 
-              className="input" 
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required 
-            />
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+              <label htmlFor="password" className="text-sm font-medium text-primary">Password</label>
+              <Link to="/forgot-password" style={{ fontSize: '0.875rem', color: 'var(--accent-color)', textDecoration: 'none' }}>Forgot password?</Link>
+            </div>
+            <div style={{ position: 'relative' }}>
+              <input 
+                type={showPassword ? "text" : "password"} 
+                id="password" 
+                className="input" 
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={{ paddingRight: '2.5rem' }}
+                required 
+              />
+              <button 
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0 }}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
           <button disabled={loading} type="submit" className="btn btn-primary mt-2" style={{ width: '100%' }}>
             {loading ? 'Logging in...' : 'Log In'}

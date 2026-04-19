@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Activity } from 'lucide-react';
+import { Activity, Eye, EyeOff } from 'lucide-react';
 
 export default function Signup() {
   const [name, setName] = useState('');
@@ -10,6 +10,8 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
   const { signup } = useAuth();
   const navigate = useNavigate();
@@ -83,27 +85,49 @@ export default function Signup() {
           </div>
           <div>
             <label htmlFor="password" className="text-sm font-medium text-primary" style={{ display: 'block', marginBottom: '0.5rem' }}>Password</label>
-            <input 
-              type="password" 
-              id="password" 
-              className="input" 
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required 
-            />
+            <div style={{ position: 'relative' }}>
+              <input 
+                type={showPassword ? "text" : "password"} 
+                id="password" 
+                className="input" 
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={{ paddingRight: '2.5rem' }}
+                required 
+              />
+              <button 
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0 }}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
           <div>
             <label htmlFor="confirmPassword" className="text-sm font-medium text-primary" style={{ display: 'block', marginBottom: '0.5rem' }}>Confirm Password</label>
-            <input 
-              type="password" 
-              id="confirmPassword" 
-              className="input" 
-              placeholder="••••••••"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required 
-            />
+            <div style={{ position: 'relative' }}>
+              <input 
+                type={showConfirmPassword ? "text" : "password"} 
+                id="confirmPassword" 
+                className="input" 
+                placeholder="••••••••"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                style={{ paddingRight: '2.5rem' }}
+                required 
+              />
+              <button 
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0 }}
+                aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
+              >
+                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
           <button disabled={loading} type="submit" className="btn btn-primary mt-2" style={{ width: '100%' }}>
             {loading ? 'Creating Account...' : 'Sign Up'}
