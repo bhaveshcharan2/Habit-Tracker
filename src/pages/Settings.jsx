@@ -5,13 +5,17 @@ import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { getAllLogs } from '../firebase/db';
 import { usePWA } from '../context/PWAContext';
-import { Download } from 'lucide-react';
+import { useNotification } from '../context/NotificationContext';
+import { Download, Bell, BellOff } from 'lucide-react';
+
 
 
 export default function Settings() {
   const { theme, toggleTheme } = useTheme();
   const { currentUser, logout } = useAuth();
   const { isInstallable, installApp } = usePWA();
+  const { permission, requestPermission } = useNotification();
+
 
   
   const [isEditingName, setIsEditingName] = useState(false);
@@ -76,6 +80,15 @@ export default function Settings() {
     }
   }
 
+  async function handleEnableNotifications() {
+    setLoading(true);
+    const status = await requestPermission();
+    if (status === 'denied') {
+      alert('Notification permission was denied. Please enable notifications in your browser settings.');
+    }
+    setLoading(false);
+  }
+
   return (
     <>
       <header style={{ marginBottom: '2rem' }}>
@@ -136,6 +149,28 @@ export default function Settings() {
           </div>
           <button onClick={handleExportCSV} className="btn btn-outline" disabled={loading}>
             Export CSV
+          </button>
+        </div>
+      </div>
+
+      <div className="card" style={{ marginBottom: '2rem' }}>
+        <h2 className="h3" style={{ marginBottom: '1.5rem' }}>Notifications</h2>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div>
+            <span className="font-medium">Push Notifications</span>
+            <p className="text-sm text-secondary">Get reminders and updates even when the app is closed.</p>
+          </div>
+          <button 
+            onClick={handleEnableNotifications} 
+            className={`btn ${permission === 'granted' ? 'btn-ghost' : 'btn-primary'}`}
+            disabled={loading || permission === 'granted'}
+            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+          >
+            {permission === 'granted' ? (
+              <><Bell size={18} /> Enabled</>
+            ) : (
+              <><BellOff size={18} /> Enable Notifications</>
+            )}
           </button>
         </div>
       </div>

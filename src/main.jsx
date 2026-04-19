@@ -5,18 +5,22 @@ import './index.css'
 import { ThemeProvider } from './context/ThemeContext'
 import { AuthProvider } from './context/AuthContext'
 import { PWAProvider } from './context/PWAContext'
+import { NotificationProvider } from './context/NotificationContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <PWAProvider>
       <ThemeProvider>
         <AuthProvider>
-          <App />
+          <NotificationProvider>
+            <App />
+          </NotificationProvider>
         </AuthProvider>
       </ThemeProvider>
     </PWAProvider>
   </React.StrictMode>,
 )
+
 
 
 // Register Service Worker
