@@ -1,42 +1,22 @@
 import { Link } from 'react-router-dom';
-import { Activity } from "lucide-react";
+import { Activity, Github, Twitter, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-grid">
         <div className="footer-column">
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              fontWeight: 'bold',
-              fontSize: '1.25rem',
-              color: 'var(--text-primary)',
-              marginBottom: '1.5rem'
-            }}
-          >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold', fontSize: '1.25rem', color: 'var(--text-primary)', marginBottom: '1.5rem' }}>
             <Activity color="var(--accent-color)" size={24} />
             <span>Wamio</span>
           </div>
-
-          <p
-            className="text-secondary"
-            style={{
-              maxWidth: '300px',
-              fontSize: '0.9rem',
-              lineHeight: '1.6'
-            }}
-          >
-            A premium habit tracking experience designed to help you build
-            consistency and achieve your long-term goals with ease.
+          <p className="text-secondary" style={{ maxWidth: '300px', fontSize: '0.9rem', lineHeight: '1.6' }}>
+            A premium habit tracking experience designed to help you build consistency and achieve your long-term goals with ease.
           </p>
-
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
-            <a href="#" className="btn-ghost" style={{ padding: '0.5rem' }}>Twitter</a>
-            <a href="#" className="btn-ghost" style={{ padding: '0.5rem' }}>GitHub</a>
-            <a href="#" className="btn-ghost" style={{ padding: '0.5rem' }}>LinkedIn</a>
+            <a href="#" className="btn-ghost" style={{ padding: '0.5rem' }}><Twitter size={20} /></a>
+            <a href="#" className="btn-ghost" style={{ padding: '0.5rem' }}><Github size={20} /></a>
+            <a href="#" className="btn-ghost" style={{ padding: '0.5rem' }}><Linkedin size={20} /></a>
           </div>
         </div>
 
@@ -70,7 +50,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} Wamio Labs Inc. All rights reserved.</p>
-        <p>Made with ♥ for consistency seekers.</p>
+        <p>Made with &hearts; for consistency seekers.</p>
       </div>
     </footer>
   );
