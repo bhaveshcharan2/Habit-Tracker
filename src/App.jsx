@@ -8,6 +8,9 @@ import Dashboard from './pages/Dashboard';
 import Calendar from './pages/Calendar';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
+import About from './pages/About';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfUse from './pages/TermsOfUse';
 import Layout from './components/Layout';
 import { useAuth } from './context/AuthContext';
 
@@ -22,6 +25,9 @@ function App() {
           <Route path="/login" element={currentUser ? <Navigate to="/dashboard" replace /> : <Login />} />
           <Route path="/signup" element={currentUser ? <Navigate to="/dashboard" replace /> : <Signup />} />
           <Route path="/forgot-password" element={currentUser ? <Navigate to="/dashboard" replace /> : <ForgotPassword />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfUse />} />
           
           <Route path="/dashboard" element={
             <ProtectedRoute>
