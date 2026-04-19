@@ -7,9 +7,15 @@ export const usePWA = () => useContext(PWAContext);
 export const PWAProvider = ({ children }) => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isInstallable, setIsInstallable] = useState(false);
+  const [isInstalled, setIsInstalled] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
+    // Check if the app is already installed/running in standalone mode
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+      setIsInstalled(true);
+    }
+
     const handleBeforeInstallPrompt = (e) => {
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
@@ -62,8 +68,9 @@ export const PWAProvider = ({ children }) => {
   };
 
   return (
-    <PWAContext.Provider value={{ isInstallable, installApp, showPopup, closePopup }}>
+    <PWAContext.Provider value={{ isInstallable, isInstalled, installApp, showPopup, closePopup }}>
       {children}
     </PWAContext.Provider>
   );
+
 };

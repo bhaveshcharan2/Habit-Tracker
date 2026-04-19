@@ -6,14 +6,14 @@ import { db } from '../firebase/config';
 import { getAllLogs } from '../firebase/db';
 import { usePWA } from '../context/PWAContext';
 import { useNotification } from '../context/NotificationContext';
-import { Download, Bell, BellOff } from 'lucide-react';
+import { Download, Bell, BellOff, CheckCircle, Info, Share } from 'lucide-react';
 
 
 
 export default function Settings() {
   const { theme, toggleTheme } = useTheme();
   const { currentUser, logout } = useAuth();
-  const { isInstallable, installApp } = usePWA();
+  const { isInstallable, isInstalled, installApp } = usePWA();
   const { permission, requestPermission } = useNotification();
 
 
@@ -175,21 +175,54 @@ export default function Settings() {
         </div>
       </div>
 
-      {isInstallable && (
-        <div className="card" style={{ marginBottom: '2rem' }}>
-          <h2 className="h3" style={{ marginBottom: '1.5rem' }}>App Installation</h2>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div className="card" style={{ marginBottom: '2rem' }}>
+        <h2 className="h3" style={{ marginBottom: '1.5rem' }}>App Installation</h2>
+        
+        {isInstalled ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--success-color)', backgroundColor: 'rgba(16, 185, 129, 0.1)', padding: '1rem', borderRadius: '0.75rem' }}>
+            <CheckCircle size={24} />
             <div>
-              <span className="font-medium">Install Wamio</span>
-              <p className="text-sm text-secondary">Install as a standalone app for better performance.</p>
+              <p className="font-medium">Wamio is installed</p>
+              <p className="text-sm">You are currently using the standalone application.</p>
             </div>
-            <button onClick={installApp} className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Download size={18} />
-              Install App
-            </button>
           </div>
-        </div>
-      )}
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div>
+                <span className="font-medium">Web Version</span>
+                <p className="text-sm text-secondary">Install Wamio on your home screen for the full experience.</p>
+              </div>
+              
+              {isInstallable ? (
+                <button onClick={installApp} className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Download size={18} />
+                  Install App
+                </button>
+              ) : (
+                <div style={{ backgroundColor: 'var(--accent-light)', color: 'var(--accent-color)', padding: '0.5rem 1rem', borderRadius: '2rem', fontSize: '0.875rem', fontWeight: '600' }}>
+                  Browser Only
+                </div>
+              )}
+            </div>
+
+            {!isInstallable && (
+              <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '1.25rem' }}>
+                <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1rem' }}>
+                  <Info size={18} className="text-accent" />
+                  <p className="text-sm font-medium">How to install on iOS / Safari</p>
+                </div>
+                <ol style={{ paddingLeft: '1.25rem', margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <li className="text-sm text-secondary">Tap the <Share size={16} style={{ verticalAlign: 'middle', margin: '0 2px' }} /> <strong>Share</strong> button in Safari.</li>
+                  <li className="text-sm text-secondary">Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+                  <li className="text-sm text-secondary">Tap <strong>Add</strong> in the top right corner.</li>
+                </ol>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
 
       <div className="card" style={{ marginBottom: '2rem', border: '1px solid var(--danger-bg)' }}>
         <h2 className="h3" style={{ marginBottom: '1.5rem', color: 'var(--danger-color)' }}>Account Actions</h2>
