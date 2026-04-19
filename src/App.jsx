@@ -12,7 +12,9 @@ import About from './pages/About';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
 import Layout from './components/Layout';
+import PWAInstallPopup from './components/PWAInstallPopup';
 import { useAuth } from './context/AuthContext';
+
 
 function App() {
   const { currentUser } = useAuth();
@@ -61,7 +63,10 @@ function App() {
             </ProtectedRoute>
           } />
         </Routes>
+        <PWAInstallPopup />
+
       </div>
+
     </BrowserRouter>
   );
 }

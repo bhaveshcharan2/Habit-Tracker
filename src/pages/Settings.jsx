@@ -4,10 +4,15 @@ import { useAuth } from '../context/AuthContext';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { getAllLogs } from '../firebase/db';
+import { usePWA } from '../context/PWAContext';
+import { Download } from 'lucide-react';
+
 
 export default function Settings() {
   const { theme, toggleTheme } = useTheme();
   const { currentUser, logout } = useAuth();
+  const { isInstallable, installApp } = usePWA();
+
   
   const [isEditingName, setIsEditingName] = useState(false);
   const [newName, setNewName] = useState(currentUser?.name || '');
@@ -135,6 +140,22 @@ export default function Settings() {
         </div>
       </div>
 
+      {isInstallable && (
+        <div className="card" style={{ marginBottom: '2rem' }}>
+          <h2 className="h3" style={{ marginBottom: '1.5rem' }}>App Installation</h2>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div>
+              <span className="font-medium">Install Wamio</span>
+              <p className="text-sm text-secondary">Install as a standalone app for better performance.</p>
+            </div>
+            <button onClick={installApp} className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Download size={18} />
+              Install App
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="card" style={{ marginBottom: '2rem', border: '1px solid var(--danger-bg)' }}>
         <h2 className="h3" style={{ marginBottom: '1.5rem', color: 'var(--danger-color)' }}>Account Actions</h2>
         <p className="text-sm text-secondary mb-4">You can log back in securely at any time.</p>
@@ -142,6 +163,7 @@ export default function Settings() {
           Log Out of Wamio
         </button>
       </div>
+
     </>
   );
 }

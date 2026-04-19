@@ -15,16 +15,9 @@ export default function Landing() {
           <Activity color="var(--accent-color)" size={28} />
           <span>Wamio</span>
         </div>
-        <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          <div style={{ display: 'flex', gap: '1.5rem' }} className="hide-mobile">
-            <a href="#features" className="text-secondary font-medium hover:text-primary">Features</a>
-            <a href="#how-it-works" className="text-secondary font-medium hover:text-primary">How it Works</a>
-            <a href="#faq" className="text-secondary font-medium hover:text-primary">FAQ</a>
-          </div>
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-            <Link to="/login" className="btn btn-ghost">Log In</Link>
-            <Link to="/signup" className="btn btn-primary">Sign Up Free</Link>
-          </div>
+        <nav style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <Link to="/login" className="btn btn-ghost">Log In</Link>
+          <Link to="/signup" className="btn btn-primary">Sign Up Free</Link>
         </nav>
       </header>
 
